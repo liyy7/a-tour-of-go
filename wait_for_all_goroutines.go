@@ -47,6 +47,8 @@ func main() {
 		fmt.Errorf("INPUT ERROR:", err)
 	}
 
+	fmt.Println("Got number:", N)
+
 	// Send `N` numbers to message channel
 	for i := 0; i < N; i++ {
 		wg.Add(1)
@@ -64,4 +66,16 @@ func main() {
 	// Send DONE signal
 	fmt.Println("DONE SIGNAL SENDING")
 	done <- struct{}{}
+
+	/*
+	 * Because no goroutine will receive number from messages,
+	 * this statement will block, and the main goroutine will be asleep,
+	 * it will cause a fatal error: `all goroutines are asleep - deadlock!`.
+	 *
+	 * Adding the code below can fix it (receive number from messages in another goroutine)
+	 * go func() {
+	 *     <-messages
+	 * }()
+	 */
+	//	messages <- 0
 }
