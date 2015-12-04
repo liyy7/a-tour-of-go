@@ -4,9 +4,9 @@ package main
 
 import "fmt"
 
-const _State_name = "RunningStoppedRebootingTerminated"
+const _State_name = "UnknownRunningStoppedRebootingTerminated"
 
-var _State_index = [...]uint8{0, 7, 14, 23, 33}
+var _State_index = [...]uint8{0, 7, 14, 21, 30, 40}
 
 func (i State) String() string {
 	if i < 0 || i >= State(len(_State_index)-1) {

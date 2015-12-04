@@ -7,7 +7,8 @@ import (
 type State int
 
 const (
-	Running State = iota
+	Unknown State = iota
+	Running
 	Stopped
 	Rebooting
 	Terminated
@@ -18,4 +19,14 @@ const (
 func main() {
 	state := Running
 	fmt.Println("state ", state)
+
+	type T struct {
+		Name  string
+		Port  int
+		State State
+	}
+
+	t := T{Name: "example", Port: 6666}
+
+	fmt.Printf("t %+v\n", t)
 }
